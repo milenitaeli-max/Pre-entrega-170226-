@@ -1,26 +1,25 @@
 # Pre-entrega-170226-
-Proyecto de verificación de clima para activación de riego automático
-
 # Caso: Sistema de Monitoreo Climático y Alerta de Riego
-# Trigger (Disparador):
-Se utiliza el nodo Schedule, configurado para ejecutarse de forma automática cada 3 horas. Esto asegura que el monitoreo sea constante sin intervención humana.
+# Pre-entrega: Sistema de Monitoreo Climático con n8n
 
-# Descripción de los Nodos:
+## Descripción del Proyecto
+Este workflow automatiza el monitoreo de temperatura ambiental utilizando datos en tiempo real de una API externa y notificando vía Gmail si se superan ciertos umbrales térmicos.
 
-Schedule: Inicia el flujo automáticamente en intervalos de tiempo definidos.
+## Estructura del Workflow
+El flujo se compone de los siguientes nodos:
+* **Schedule (Trigger):** Activa el flujo automáticamente cada 1 hora.
+* **HTTP Request (API):** Consulta a Open-Meteo API para obtener la temperatura actual de Buenos Aires.
+* **Edit Fields (Manejo de datos):** Normaliza la respuesta de la API en la variable `temperatura_actual`.
+* **IF (Condicional):** Evalúa si el dato es mayor a 25°C.
+* **Gmail (Notificación):** Envía un correo de alerta mediante OAuth2.
 
-HTTP Request: Realiza una llamada GET a la API pública de Open-Meteo para obtener datos meteorológicos en tiempo real (temperatura actual) sin necesidad de autenticación compleja.
+## Evidencias
+### Workflow en ejecución
+![Captura del Workflow](./evidencias/captura_workflow.png)
 
-Edit Fields (Set): Recibe los datos de la API y crea una variable limpia llamada temperatura_actual, facilitando el mapeo de expresiones en los nodos siguientes.
+### Notificación Recibida
+![Captura del Email](./evidencias/captura_email.png)
 
-IF (Condicional): Evalúa si la temperatura recibida es mayor a 24°C. Se eligió este valor para decidir si el clima amerita una notificación de alerta para riego o cuidado térmico.
-
-Gmail: Nodo de notificación que envía un correo electrónico automático utilizando credenciales OAuth2. Se activa solo si el condicional es verdadero (True).
-
-# Buenas Prácticas Aplicadas:
-
-Seguridad: Uso de la gestión de credenciales nativa de n8n (OAuth2) para Gmail, evitando exponer contraseñas en el flujo.
-
-Persistencia: Los datos se normalizan en un nodo específico para mantener el orden del flujo.
-
-Mantenimiento: Uso de una API pública y estable que no requiere rotación de tokens.
+## Buenas Prácticas
+* **Seguridad:** No se incluyen credenciales en el archivo JSON. Se utiliza el gestor de credenciales nativo de n8n.
+* **Documentación:** Cada nodo tiene una función clara y específica dentro del proceso de negocio.
