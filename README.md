@@ -1,6 +1,6 @@
-# Pre-entrega-170226-
+
 # Caso: Sistema de Monitoreo Climático y Alerta de Riego
-# Pre-entrega: Sistema de Monitoreo Climático con n8n
+ Pre-entrega: Sistema de Monitoreo Climático con n8n
 
 ## Descripción del Proyecto
 Este workflow automatiza el monitoreo de temperatura ambiental utilizando datos en tiempo real de una API externa y notificando vía Gmail si se superan ciertos umbrales térmicos.
