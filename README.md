@@ -13,13 +13,6 @@ El flujo se compone de los siguientes nodos:
 * **IF (Condicional):** Evalúa si el dato es mayor a 24°C.
 * **Gmail (Notificación):** Envía un correo de alerta mediante OAuth2.
 
-## Evidencias
-### Workflow en ejecución
-![Captura del Workflow](./evidencias/captura_workflow.png)
-
-### Notificación Recibida
-![Captura del Email](./evidencias/captura_email.png)
-
 ## Buenas Prácticas
 * **Seguridad:** No se incluyen credenciales en el archivo JSON. Se utiliza el gestor de credenciales nativo de n8n.
 * **Documentación:** Cada nodo tiene una función clara y específica dentro del proceso de negocio.
